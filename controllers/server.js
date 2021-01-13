@@ -26,7 +26,6 @@ function buildMasterList() {
                        	serverList.push(serverPair);
                 }
         });
-	checkServerConns();
 	return;
 }
 
@@ -48,6 +47,7 @@ function pollAllServers(req, res) {
 	if(!serverList.length) {
 		buildMasterList();
 	}
+	checkServerConns();
 	res.json(serverList);
 }
 
@@ -55,6 +55,11 @@ function pollServer(req, res) {
 	if(!serverList.length) {
 		buildMasterList();
 	}
+	checkServerConns();
 	const server = serverList.find(({name}) => name === req.params.name);
-	res.json(server);
+	if (server) {
+		res.json(server);
+	} else {
+		res.status(400).json('Error');
+	}
 }
