@@ -17,24 +17,3 @@ app.use('/api/servers', require('./routes/api/servers'));
 const server = app.listen(PORT, () => {
 	console.log(`Express listening on port:${PORT}`);
 });
-
-/*function checkServerNet() {
-	const serverList = buildServerList();
-	serverList.forEach((server) => {
-        	exec(`ss -tuna src :${server[1]} | grep -q :${server[1]}; echo $?`, (err, stdout, stderr) => {
-			if (parseInt(stdout) === 0) {
-        	             exec(`ss -Htun src :${server[1]} | wc -l`, (err, stdout, stderr) => {
-				     console.log(`${server[0]} is up`);
-				     console.log(`There are ${parseInt(stdout)} players connected.`);
-			     });
-        	     	} else {
-			     console.log(`${server[0]} is down`);
-			}
-	        });
-	});
-}
-
-checkServerNet();
-*/
-
-

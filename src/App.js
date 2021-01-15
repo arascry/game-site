@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 
-import ServerInfo from './components/ServerInfo/ServerInfo';
+import SideBar from './components/SideBar/SideBar';
+import ServerBar from './components/ServerBar/ServerBar';
 
 import serverService from './utils/serverService';
 
@@ -23,18 +24,17 @@ class App extends React.Component {
 	}
 	render() {
  		return (
-			<div className="App">
-			{!this.state.serverList ?
-				(<div>Initalizing Page</div>)
-				:(
-					<div>
-						<h1>Test Page</h1>
-						{this.state.serverList.map((server) => {
-							return (<ServerInfo server={server} />)
-						})}
-					</div>
-				)
-			}
+			<div className='App'>
+				<h1>Server List</h1>
+				{!this.state.serverList ?
+					(<div>Initalizing Page</div>)
+					:(
+						<div className='main-container'>
+							<SideBar />
+							<ServerBar serverList={this.state.serverList} />
+						</div>
+					)
+				}
 			</div>
 		);
 	}
